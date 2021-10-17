@@ -4,7 +4,9 @@ If you are Japanese speaker, we have [README.ja.md](/README.jp.md) for you.
 # Cam Tank
 Cam tank is Wifi control tank with camera streaming.
 
-<img src="./camtank.jpg" width="480px" />
+<img src="./camtank.jpg" width="480px" />  
+  
+<img src="./manubat.png" width="360px" />
 
 # Implementation
 
