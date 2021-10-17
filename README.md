@@ -38,7 +38,22 @@ Exec git clone command to download souce code in your pc.
 `git clone https://github.com/koyaaaaaan/cam-tank`
 2. Connect ESP32 and PC with Serial.
 In case of use USB Serial, connect like this.  
-(On going. Please wait for 1 or 2 day)
+  
+Connect each row.  
+| USB Serial | ESP32 CAM |
+| ---------- | --------- | 
+| 5V         | 5V        |
+| RX         | UoT       |
+| TX         | UoR       | 
+| GND        | GND       |  
+
+ESP32 Self Connection (This is for Installing the program)  
+Connect each row.  
+| ESP32 CAM   | ESP32 CAM |
+| ----------- | --------- |
+| IO 0 (ZERO) | GND       |
+  
+
 3. Open Source Code with Arduino IDE  
 Open camtank.ino file.<img src="./arduinoide.jpg" width="240px" />
 4. Compile and Install  
@@ -50,24 +65,40 @@ Remove the connection between GND and IO0(ZERO).
 ## Motor Circuit Implements
 ### Electric Circuit
 Make circuit like this.  
-(On going. Please wait for 1 or 2 day)
-
-### Behaviors in controll screen.
-(On going. Please wait for 1 or 2 day)
+*Note: Motor Driver may be diffirent behavior. Then please change connection.*
+  
+Connect each row.
+| ESP32 CAM | Motor Driver           | Battery         | Motor           | 
+| --------- | ---------------------- | --------------- | --------------- | 
+| IO2       | INT1 (MotorA Forward)  |                 | GND             | 
+| IO14      | INT2 (MotorA Backward) |                 |                 | 
+| IO15      | INT3 (MotorB Forward)  |                 |                 | 
+| IO13      | INT4 (MotorB Backward) |                 |                 | 
+|           | MororA 1               |                 | MotorA Positive | 
+|           | MororA 2               |                 | MotorA Negative | 
+|           | MororB 1               |                 | MotorB Positive | 
+|           | MororB 1               |                 | MotorB Negative | 
+|           | Positive               | Positive (3-5V) |                 | 
+|           | Negative               | Negative        |                 | 
 
 ## Servo Circuit Implements (not Recommended)
 *Warning: Camera of My ESP32-CAM didn't work with Servo PWM outputting. I guess its noise causes confusing camera behaviour. So I recommend to make test the circuit with breadboard before you make the circuit fixed.*
 
 ### Electric Circuit
-(On going. Please wait for 1 or 2 day)
+Connect each row.
+| ESP32 CAM | Servo Base (Horizontal) | Servo Cam (Vertical) | Battery       | 
+| --------- | ----------------------- | -------------------- | ------------- | 
+| IO 12     | PWM Controll            |                      |               | 
+|           | VCC                     |                      | Positive (5V) | 
+|           | GND                     |                      | Negative      | 
+| IO 16     |                         | PWM Controll         |               | 
+|           |                         | VCC                  | Positive (5V) | 
+|           |                         | GND                  | Negative      | 
 
 ### Source code Modifying
 You can find "# Servo" in camtank.ino and app_httpd.ccp.  
 Please remove the comment outs around that.  
 After do it, please install source code into ESP32 again.  
-
-### Behaviors in controll screen.
-(On going. Please wait for 1 or 2 day)
 
 ## Testing
 1. Turn TANK CAM on.
