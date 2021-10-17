@@ -73,10 +73,12 @@ After do it, please install source code into ESP32 again.
 1. Turn TANK CAM on.
 2. Connecting the Wifi AP "ESP32-TANK-CAM" with password "tankcam".
 3. Access http://192.168.0.12/ with Webbrowser.
-4. You can see Controll Buttons and Cam Streaming.
- - Save Button -> Download Cam Screen as JPG format.
- - RED Buttons -> Controll Servo.
- - Blue Buttons - > Conrtoll Motors.
+4. You can see Controll Buttons and Cam Streaming.  
+<img src="./manubat.png" width="360px" />  
+  
+* Save Button -> Download Cam Screen as JPG format.  
+* RED Buttons -> Controll Servo.  
+* Blue Buttons - > Conrtoll Motors.  
 
 ## Hints
 * Recommend to connect different battery sources ESP32 and Motors.  
