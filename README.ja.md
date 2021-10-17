@@ -20,11 +20,11 @@ Cam tank はWifi接続でPCから操作可能なCameraストリーミング付�
 ESP32
 <img src="./esp32cam.jpg" width="240px" />
 タミヤのタンクキット
-<img src="./tamiya_tank_basic.jpg" width="240px" />
-ドュアルモーター
+<img src="./tamiya_tank_basic.jpg" width="240px" /><br />
+デュアルモーター
 <img src="./tamiya_dual_motor.jpg" width="240px" />
 モータードライバ
-<img src="./motordriver.jpg" width="240px" />
+<img src="./motordriver.jpg" width="240px" /><br />
 カメラマウント 
 <img src="./servomount.jpg" width="240px" />
   
