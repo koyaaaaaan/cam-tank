@@ -1,0 +1,352 @@
+<html>
+<head>
+  <script type="text/javascript">
+    var led = 12;
+            var motorA_F = 2;
+            var motorA_B = 14;
+            var motorB_F = 15;
+            var motorB_B = 13;
+            var DIGITAL_WRITE_URL = "http://192.168.0.12/gpio-digital-write?";
+
+            function tank_forward(){
+                digitalWrite(motorA_F, 1, motorA_B, 0, motorB_F, 1, motorB_B, 0, -1, -1);
+            }
+
+            function tank_backward(){
+                digitalWrite(motorA_F, 0, motorA_B, 1, motorB_F, 0, motorB_B, 1, -1, -1);
+            }
+
+            function tank_left_forward(){
+                digitalWrite(motorA_F, 1, motorA_B, 0, motorB_F, 0, motorB_B, 0, led, -1);
+            }
+
+            function tank_left_turn(){
+                digitalWrite(motorA_F, 1, motorA_B, 0, motorB_F, 0, motorB_B, 1, led, -1);
+            }
+
+            function tank_left_backward(){
+                digitalWrite(motorA_F, 1, motorA_B, 0, motorB_F, 0, motorB_B, 0, led, -1);
+            }
+
+            function tank_right_forward(){
+                digitalWrite(motorA_F, 0, motorA_B, 0, motorB_F, 1, motorB_B, 0, led, -1);
+            }
+
+            function tank_right_turn(){
+                digitalWrite(motorA_F, 0, motorA_B, 1, motorB_F, 1, motorB_B, 0, led, -1);
+            }
+
+            function tank_right_backward(){
+                digitalWrite(motorA_F, 0, motorA_B, 0, motorB_F, 0, motorB_B, 1, led, -1);
+            }
+
+            function tank_stop(){
+                digitalWrite(motorA_F, 1, motorA_B, 1, motorB_F, 1, motorB_B, 1, led, -1);
+            }
+
+            function tank_all_cancel(){
+                digitalWrite(motorA_F, 0, motorA_B, 0, motorB_F, 0, motorB_B, 0, led, 0);
+                cam-reset();
+            }
+
+            let camX = [180,150,120,90,60,30,0];
+            let camY = [180,150,120,80,60,30,0];
+            let camXP = 3;
+            let camYP = 3;
+
+            function cam_reset(){
+              camXP = 3;
+              camYP = 3;
+              servoReset(camX[camXP],camY[camYP]);
+            }
+
+            function cam_up(){
+              if(camYP < camY.length){
+                camYP++;
+                servoYWrite(camY[camYP]);
+              }
+            }
+
+            function cam_down(){
+              if(camYP > 0){
+                camYP--;
+                servoYWrite(camY[camYP]);
+              }
+            }
+
+            function cam_right(){
+              if(camXP < camX.length){
+                camXP++;
+                servoXWrite(camX[camXP]);
+              }
+            }
+
+            function cam_left(){
+              if(camXP > 0){
+                camXP--;
+                servoXWrite(camX[camXP]);
+              }
+            }
+
+
+            function digitalWrite(pin1,val1,pin2,val2,pin3,val3,pin4,val4,pin5,val5){
+                let request = "http://192.168.0.12/gpio-digital-write?"
+                  + getWritePinParam(1, pin1,val1)
+                  + getWritePinParam(2, pin2,val2)
+                  + getWritePinParam(3, pin3,val3)
+                  + getWritePinParam(4, pin4,val4)
+                  + getWritePinParam(5, pin5,val5);
+
+                  var req = new XMLHttpRequest();
+                  req.open('GET', request, true);
+                  req.send(null);
+            }
+
+            function getWritePinParam(paramNo, pin, val){
+                if(paramNo == 0 || pin == -1 || val == -1){
+                    return "";
+                }
+                let no = paramNo.toString();
+                let pinStr = pin.toString();
+                let valStr = val.toString();
+                return "pin" + no + "=" + pinStr + "&val" + no + "=" + valStr + "&";
+            }
+
+            function servoXWrite(angle){
+              let request = "http://192.168.0.12/gpio-servo-angle?val1=" + angle.toString();
+              var req = new XMLHttpRequest();
+              req.open('GET', request, true);
+              req.send(null);
+            }
+
+            function servoYWrite(angle){
+              let request = "http://192.168.0.12/gpio-servo-angle?val2=" + angle.toString();
+              var req = new XMLHttpRequest();
+              req.open('GET', request, true);
+              req.send(null);
+            }
+
+            function servoReset(x,y){
+              let request = "http://192.168.0.12/gpio-servo-angle?val1=" + x.toString() + "&val2=" + y.toString();
+              var req = new XMLHttpRequest();
+              req.open('GET', request, true);
+              req.send(null);
+            }
+
+            function getRectLen(divine){
+              if(window.innerWidth < window.innerHeight){
+                return window.innerWidth / divine;
+              }else{
+                return window.innerHeight / divine;
+              }
+            }
+
+            function setinit(){
+              let padh = 20;
+              let h = getRectLen(9);
+              let padw = 20;
+              let w = getRectLen(9);
+
+              let margin = getTopBottomPadding();
+
+              setRightBottomPosition("tankForward"     ,padw + 3 * w ,margin + padh + 3 * h);
+              setRightBottomPosition("tankLeftTurn"    ,padw + 5 * w ,margin + padh + 2 * h);
+              setRightBottomPosition("tankLeftForward" ,padw + 4 * w ,margin + padh + 2 * h);
+              setRightBottomPosition("tankStop"        ,padw + 3 * w ,margin + padh + 2 * h);
+              setRightBottomPosition("tankRightFoward" ,padw + 2 * w ,margin + padh + 2 * h);
+              setRightBottomPosition("tankRightTurn"   ,padw + 1 * w ,margin + padh + 2 * h);
+              setRightBottomPosition("tankBackward"    ,padw + 3 * w ,margin + padh + 1 * h);
+
+              setLeftBottomPosition("camUP"    ,padw + 1 * w ,margin + padh + 3 * h);
+              setLeftBottomPosition("camLEFT"  ,padw + 0 * w ,margin + padh + 2 * h);
+              setLeftBottomPosition("camRESET" ,padw + 1 * w ,margin + padh + 2 * h);
+              setLeftBottomPosition("camRIGHT" ,padw + 2 * w ,margin + padh + 2 * h);
+              setLeftBottomPosition("camDOWN"  ,padw + 1 * w ,margin + padh + 1 * h);
+
+              setButtonRect("bi",10);
+              setButtonRect("bc",10);
+              streamResize(margin);
+            }
+
+            function getTopBottomPadding(){
+              if(window.innerHeight < window.innerWidth * 1.2){
+                return 0;
+              }
+
+              return (window.innerHeight - (window.innerWidth * 1.2)) / 2;
+            }
+
+            function setLeftBottomPosition(id, x, y){
+                let d = document.getElementById(id);
+                let xp = x;
+                let yp = window.innerHeight - y;
+                d.style.top = yp.toString() + "px";
+                d.style.left = xp.toString() + "px";
+            }
+
+            function setRightBottomPosition(id, x, y){
+                let d = document.getElementById(id);
+                let xp = window.innerWidth - x;
+                let yp = window.innerHeight - y;
+                d.style.top = yp.toString() + "px";
+                d.style.left = xp.toString() + "px";
+            }
+
+            function setButtonRect(classNm, divine){
+              let elems = document.getElementsByClassName(classNm);
+              let w = getRectLen(divine);
+              for(let i=0; i < elems.length; i++){
+                let e = elems[i];
+                e.style.width = w;
+                e.style.height = w;
+              }
+            }
+
+            function streamResize(margin){
+              let viewContainer = document.getElementById("stream-container");
+              let view = document.getElementById("stream");
+              let w;
+              let h;
+              if(window.innerWidth / 3  < window.innerHeight / 2){
+                w = window.innerWidth;
+                h = window.innerWidth / 3 * 2;
+              }else{
+                h = window.innerHeight;
+                w = window.innerHeight / 2 * 3;
+              }
+              viewContainer.style.marginTop = margin.toString() + "px";
+              viewContainer.style.width = w;
+              viewContainer.style.height = h;
+              if(view.src != ""){
+                view.style.width = w;
+                view.style.height = h;
+              }
+            }
+
+            function stremStart(streamUrl) {
+              let view = document.getElementById("stream");
+              let viewContainer = document.getElementById("stream-container");
+              viewContainer.style.display = "";
+              view.src = `${streamUrl}`
+            }
+
+            function save(){
+              let view = document.getElementById("stream");
+              let saveButton = document.getElementById("save-still");
+              var canvas = document.createElement("canvas");
+              canvas.width = 320;//view.width;
+              canvas.height = 240;//view.height;
+              document.body.appendChild(canvas);
+              var context = canvas.getContext('2d');
+              context.drawImage(view,0,0);
+              try {
+                var dataURL = canvas.toDataURL('image/jpeg');
+                saveButton.href = dataURL;
+                var d = new Date();
+                saveButton.download = d.getFullYear() + ("0"+(d.getMonth()+1)).slice(-2) + ("0" + d.getDate()).slice(-2) + ("0" + d.getHours()).slice(-2) + ("0" + d.getMinutes()).slice(-2) + ("0" + d.getSeconds()).slice(-2) + ".jpg";
+              } catch (e) {
+                console.error(e);
+              }
+              canvas.parentNode.removeChild(canvas);
+            }
+  </script>
+  <style type="text/css">
+    .bs{
+          z-index: 100;
+          position: fixed;
+          top: 20px;
+          left: 20px;
+          padding: 6pt;
+          text-align: center;
+          vertical-align: middle;
+          border:1px solid gray;
+          background-color: gray;
+          color: white;
+          font-weight: bold;
+          text-decoration: none;
+        }
+        .bs:hover{
+          background-color: lightgray;
+        }
+        .bs:active{
+          background-color: gray;
+        }
+    .bi{
+          z-index: 100;
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          text-align: center;
+          vertical-align: middle;
+          border:1px solid blue;
+          background-color: blue;
+          color: white;
+          font-weight: bold;
+        }
+        .bi:hover{
+          background-color: gray;
+        }
+        .bi:active{
+          background-color: cyan;
+        }
+        .bc{
+          z-index: 100;
+          position: fixed;
+          top: 0px;
+          left: 0px;
+          text-align: center;
+          vertical-align: middle;
+          border:1px solid red;
+          background-color: red;
+          color: white;
+          font-weight: bold;
+        }
+        .bc:hover{
+          background-color: gray;
+        }
+        .bc:active{
+          background-color: orange;
+        }
+        .nob{
+          margin:0px;
+          padding:0px;
+          border:0px;
+        };
+        .image-container{
+          margin:0px;
+          padding:0px;
+          border:0px;
+          background-color: #dddddd;
+          min-width: 160px;
+          min-height: 120px;
+        }
+  </style>
+</head>
+<body onload="setinit();stremStart('http://192.168.0.12:81/stream');" onresize="setinit();" class="nob" style="background-color:#444444;">
+  <center>
+  <figure class="nob">
+    <div id="stream-container" class="image-container">
+      <img id="stream" src="" crossorigin="" />
+    </div>
+  </figure>
+</center>
+
+  <a id="save-still" href="#" class="bs" onclick="save();" download="capture.jpg">Save</a>
+
+  <input type="button" value="Forward" id="tankForward" class="bi" onmousedown="tank_forward()" onmouseup="tank_stop()" />
+  <input type="button" value="Backward" id="tankBackward" class="bi" onmousedown="tank_backward()" onmouseup="tank_stop()" />
+  <input type="button" value="Right" id="tankRightFoward" class="bi" onmousedown="tank_right_forward()" onmouseup="tank_stop()" />
+  <input type="button" value="Right Turn" id="tankRightTurn" class="bi" onmousedown="tank_right_turn()" onmouseup="tank_stop()" />
+  <!-- <button id="tankRightBack" class="bi" onmousedown="tank_right_backward()" onmouseup="tank_stop()">Right Backward</button> -->
+  <input type="button" value="Left" id="tankLeftForward" class="bi" onmousedown="tank_left_forward()" onmouseup="tank_stop()" />
+  <input type="button" value="Left Turn" id="tankLeftTurn" class="bi" onmousedown="tank_left_turn()" onmouseup="tank_stop()" />
+  <!-- <button id="tankLeftBackward" class="bi" onmousedown="tank_left_backward()" onmouseup="tank_stop()">Left Backward</button> -->
+  <input type="button" value="Stop" id="tankStop" class="bi" onmousedown="tank_stop()" />
+  <!-- <button id="tankAllCancel" class="bi" onmousedown="tank_all_cancel()">Cancel</button>-->
+  <input type="button" value="UP" id="camUP" class="bc" onmousedown="cam_up()" />
+  <input type="button" value="LEFT" id="camLEFT" class="bc" onmousedown="cam_left()" />
+  <input type="button" value="ORIGIN" id="camRESET" class="bc" onmousedown="cam_reset()" />
+  <input type="button" value="RIGHT" id="camRIGHT" class="bc" onmousedown="cam_right()" />
+  <input type="button" value="DOWN" id="camDOWN" class="bc" onmousedown="cam_down()" />
+</body>
+</html>
