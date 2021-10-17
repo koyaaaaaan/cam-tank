@@ -80,7 +80,7 @@ After do it, please install source code into ESP32 again.
 
 ## Hints
 * Recommend to connect different battery sources ESP32 and Motors.  
-Because energy drain by Motors is so much to restart ESP32 because of lack of Electricity when you connect only one bettery source.
+Because energy drain by Motors is so much to restart ESP32 due to lack of Electricity when you connect only one bettery source.
 * If you implement Servo, please give up it if Cam or Wifi was freezing when servo working.  
 There can be some conflicting between cam and wifi and servo.  
 Servo work(PWM) is a biggest issue.
