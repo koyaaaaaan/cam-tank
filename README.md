@@ -70,7 +70,7 @@ Make circuit like this.
 Connect each row.
 | ESP32 CAM | Motor Driver           | Battery         | Motor           | 
 | --------- | ---------------------- | --------------- | --------------- | 
-| IO2       | INT1 (MotorA Forward)  |                 | GND             | 
+| IO2       | INT1 (MotorA Forward)  |                 |                 | 
 | IO14      | INT2 (MotorA Backward) |                 |                 | 
 | IO15      | INT3 (MotorB Forward)  |                 |                 | 
 | IO13      | INT4 (MotorB Backward) |                 |                 | 
