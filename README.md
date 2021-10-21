@@ -10,7 +10,7 @@ Cam tank is Wifi control tank with camera streaming.
 
 # Implementation
 
-## Prepare
+## Components
 This project need to components below.
 
 * ESP32-CAM
@@ -20,15 +20,15 @@ This project need to components below.
 * Servo Motor x 2 (Optional but... I don't recommend.)
 * Cam Servo Mount (Optional but... I don't recommend.)
 
-ESP32
+ESP32<br />
 <img src="./esp32cam.jpg" width="240px" />
-TANK Kit 
+TANK Kit <br />
 <img src="./tamiya_tank_basic.jpg" width="240px" /><br />
-Dual Motor
+Dual Motor<br />
 <img src="./tamiya_dual_motor.jpg" width="240px" />
-Motor Driver
+Motor Driver<br />
 <img src="./motordriver.jpg" width="240px" /><br />
-Cam Servo Mount 
+Cam Servo Mount <br />
 <img src="./servomount.jpg" width="240px" />
 
 ## ESP32 SetUP
