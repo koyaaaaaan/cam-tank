@@ -1,5 +1,5 @@
 日本語話者のかたには [README.ja.md](/README.ja.md) を用意してあります。  
-If you are Japanese speaker, we have [README.ja.md](/README.jp.md) for you.
+If you are Japanese speaker, we have [README.ja.md](/README.ja.md) for you.
 
 # Cam Tank
 Cam tank is Wifi control tank with camera streaming.
@@ -56,10 +56,15 @@ Connect each row.  <br />
 | ----------- | --------- |
 | IO 0 (ZERO) | GND       |
 <br />
+Actual circuit is like this.<br />
+(When you run the program after uploading, unplug between IO0 and GND)<br />
+<img src="./uploading_circuit.png" />
+<br />
 <br />
 
 3. Open Source Code with Arduino IDE<br />
-Open camtank.ino file.<img src="./arduinoide.jpg" width="240px" />
+Open camtank.ino file.<br />
+<img src="./arduinoide.jpg" width="240px" />
 <br />
 <br />
 
@@ -75,7 +80,15 @@ Remove the connection between GND and IO0(ZERO).
 <br />
 <br />
 
-## Motor Circuit Implements
+
+## Overview of Circuit
+
+Here is a image after finished implementation.<br />
+Details of "DC Motor" and "Servo" are below.<br />
+<img src="./main_circuit.png" />
+
+
+## DC Motor Circuit Implements
 ### Electric Circuit
 Make circuit like this.  
 *Note: Motor Driver may be diffirent behavior. Then please change connection.*
