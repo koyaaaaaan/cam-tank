@@ -58,8 +58,11 @@ ESP32自身がつなぐものは以下です。
 
 <br />
 <br />
-3. Arduino IDEでGitからダウンロードしたソースを開きます。  
-camtank.ino というファイルを開きます.<img src="./arduinoide.jpg" width="240px" />   
+
+3. Arduino IDEでGitからダウンロードしたソースを開きます。  <br />
+
+camtank.ino というファイルを開きます.<br />
+<img src="./arduinoide.jpg" width="240px" />   
 <br />
 <br />
 4. ArduinoIDEでUpLoadを実行します。   
