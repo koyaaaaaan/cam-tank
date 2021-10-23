@@ -4,9 +4,9 @@ If you are Japanese speaker, we have [README.ja.md](/README.ja.md) for you.
 # Cam Tank
 Cam tank is Wifi control tank with camera streaming.
 
-<img src="./camtank.jpg" width="480px" />  
+<img src="./readme/camtank.jpg" width="480px" />  
   
-<img src="./manubat.png" width="360px" />
+<img src="./readme/manubat.png" width="360px" />
 
 # Implementation
 
@@ -21,15 +21,15 @@ This project need to components below.
 * Cam Servo Mount (Optional but... I don't recommend.)
 
 ESP32<br />
-<img src="./esp32cam.jpg" width="240px" /><br />
+<img src="./readme/esp32cam.jpg" width="240px" /><br />
 TANK Kit <br />
-<img src="./tamiya_tank_basic.jpg" width="240px" /><br />
+<img src="./readme/tamiya_tank_basic.jpg" width="240px" /><br />
 Dual Motor<br />
-<img src="./tamiya_dual_motor.jpg" width="240px" /><br />
+<img src="./readme/tamiya_dual_motor.jpg" width="240px" /><br />
 Motor Driver<br />
-<img src="./motordriver.jpg" width="240px" /><br />
+<img src="./readme/motordriver.jpg" width="240px" /><br />
 Cam Servo Mount <br />
-<img src="./servomount.jpg" width="240px" /><br />
+<img src="./readme/servomount.jpg" width="240px" /><br />
 
 ## ESP32 SetUP
 ### Install Source Code
@@ -58,13 +58,13 @@ Connect each row.  <br />
 <br />
 Actual circuit is like this.<br />
 (When you run the program after uploading, unplug between IO0 and GND)<br />
-<img src="./uploading_circuit.png" />
+<img src="./readme/uploading_circuit.png" />
 <br />
 <br />
 
 3. Open Source Code with Arduino IDE<br />
 Open camtank.ino file.<br />
-<img src="./arduinoide.jpg" width="240px" />
+<img src="./readme/arduinoide.jpg" width="240px" />
 <br />
 <br />
 
@@ -85,7 +85,7 @@ Remove the connection between GND and IO0(ZERO).
 
 Here is a image after finished implementation.<br />
 Details of "DC Motor" and "Servo" are below.<br />
-<img src="./main_circuit.png" />
+<img src="./readme/main_circuit.png" />
 
 
 ## DC Motor Circuit Implements
@@ -137,7 +137,7 @@ After do it, please install source code into ESP32 again.
 2. Connecting the Wifi AP "ESP32-TANK-CAM" with password "tankcam".
 3. Access http://192.168.0.12/ with Webbrowser.
 4. You can see Controll Buttons and Cam Streaming.  
-<img src="./manubat.png" width="360px" />  
+<img src="./readme/manubat.png" width="360px" />  
   
 * Save Button -> Download Cam Screen as JPG format.  
 * RED Buttons -> Controll Servo.  

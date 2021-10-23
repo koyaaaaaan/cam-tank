@@ -1,9 +1,9 @@
 # Cam Tank
 Cam tank はWifi接続でPCから操作可能なCameraストリーミング付き戦車です。
 
-<img src="./camtank.jpg" width="480px" />  
+<img src="./readme/camtank.jpg" width="480px" />  
   
-<img src="./manubat.png" width="360px" />
+<img src="./readme/manubat.png" width="360px" />
 
 # 実装
 
@@ -18,15 +18,15 @@ Cam tank はWifi接続でPCから操作可能なCameraストリーミング付�
 * カメラマウント　(任意。推奨しません。)
 
 ESP32<br />
-<img src="./esp32cam.jpg" width="240px" /><br />
+<img src="./readme/esp32cam.jpg" width="240px" /><br />
 タミヤのタンクキット<br />
-<img src="./tamiya_tank_basic.jpg" width="240px" /><br />
+<img src="./readme/tamiya_tank_basic.jpg" width="240px" /><br />
 デュアルモーター<br />
-<img src="./tamiya_dual_motor.jpg" width="240px" /><br />
+<img src="./readme/tamiya_dual_motor.jpg" width="240px" /><br />
 モータードライバ<br />
-<img src="./motordriver.jpg" width="240px" /><br />
+<img src="./readme/motordriver.jpg" width="240px" /><br />
 カメラマウント <br />
-<img src="./servomount.jpg" width="240px" /><br />
+<img src="./readme/servomount.jpg" width="240px" /><br />
   
   
 ## ESP32 セットアップ
@@ -54,7 +54,7 @@ ESP32自身がつなぐものは以下です。
 <br />
 回路図は以下のようになります。<br />
 ※アップロードが終わってからの実行時は、IO0とGNDの短絡を外してください。<br />
-<img src="./uploading_circuit.png" />
+<img src="./readme/uploading_circuit.png" />
 
 <br />
 <br />
@@ -62,7 +62,7 @@ ESP32自身がつなぐものは以下です。
 3. Arduino IDEでGitからダウンロードしたソースを開きます。  <br />
 
 camtank.ino というファイルを開きます.<br />
-<img src="./arduinoide.jpg" width="240px" />   
+<img src="./readme/arduinoide.jpg" width="240px" />   
 <br />
 <br />
 4. ArduinoIDEでUpLoadを実行します。   
@@ -81,10 +81,10 @@ ESP32自身に接続したIO0とGNDを引き抜けば、実行モードになり
 
 電子回路の実装が終わると以下のようになります。<br />
 下記に、DCモーターとサーボの詳細を記載してあります。<br />
-<img src="./main_circuit.png" />
+<img src="./readme/main_circuit.png" />
 
 ## DCモーター実装
-<img src="./motordriver.jpg" width="240px" />
+<img src="./readme/motordriver.jpg" width="240px" />
 ### 電子回路
 以下の回路を実装してください。 
 *Note: モータードライバによっては動作が違うかもしれないので、その場合は配線を変えてください。*
@@ -107,7 +107,7 @@ ESP32自身に接続したIO0とGNDを引き抜けば、実行モードになり
 <br />
 
 ## 可変カメラマウントサーボ (推奨しません)
-<img src="./servomount.jpg" width="240px" />
+<img src="./readme/servomount.jpg" width="240px" />
 *Warning: 私のESP32ではサーボとカメラが干渉して動作不良になりました。事前にブレッドボードでテストすることをおすすめします。*
 
 ### 電子回路
@@ -134,7 +134,7 @@ ESP32自身に接続したIO0とGNDを引き抜けば、実行モードになり
 2. 次の Wifi につなぎます　→ "ESP32-TANK-CAM" 。パスワードは "tankcam"。
 3. ウェブブラウザで次にアクセスします。 http://192.168.0.12/ 
 4. 画面が表示されます。  
-<img src="./manubat.png" width="360px" />  
+<img src="./readme/manubat.png" width="360px" />  
   
 * Save ボタン -> JPGとしてダウンロードできます。
 * 赤いボタン -> サーボを実装したときに、カメラを動かします。  
