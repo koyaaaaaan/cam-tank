@@ -8,7 +8,7 @@ Cam tank is Wifi control tank with camera streaming.
   
 <img src="./readme/manubat.png" width="360px" />
 
-# Implementation
+# Assemble
 
 ## Components
 This project need to components below.
